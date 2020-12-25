@@ -28,6 +28,25 @@ class ProductController extends Controller
         return response()->json($response, Response::HTTP_OK);
     }
 
+    public function bestSeller()
+    {
+        $products = Product::with('orderDetails')->get();
+        $result = [];
+        foreach ($products as $product) {
+            if (count($product->orderDetails) > 2) {
+                array_push($result, $product);
+            }
+        }
+        $response = [
+            'message' => 'successfully get products best seller',
+            'status' => true,
+            'data' => ProductResource::collection($result)
+        ];
+
+        return response()->json($response, Response::HTTP_OK);
+
+    }
+
     public function me()
     {
         $authId = 2;

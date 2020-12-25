@@ -23,6 +23,11 @@ class Product extends Model
         return $this->hasOne(Discount::class, 'product_id', 'id');
     }
 
+    public function orderDetails()
+    {
+        return $this->hasMany(OrderDetail::class, 'product_id', 'id');
+    }
+
     public static function createSlug($title, $id = 0)
     {
         $slug = Str::slug($title);

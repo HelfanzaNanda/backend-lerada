@@ -15,6 +15,7 @@ Route::post('register', [RegisterController::class, 'register']);
 Route::prefix('product')->group(function () {
     Route::get('/me', [ProductController::class, 'me']);
     Route::get('/', [ProductController::class, 'index']);
+    Route::get('/best-seller', [ProductController::class, 'bestSeller']);
     Route::post('/', [ProductController::class, 'store']);
     Route::get('/{product:slug}', [ProductController::class, 'show']);
     Route::get('/{name}/search', [ProductController::class, 'search']);
